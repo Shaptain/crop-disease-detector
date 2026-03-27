@@ -1,35 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// frontend/src/App.jsx
+import React from "react";
+import Home from "./pages/Home";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+/**
+ * App
+ * Root shell: persistent nav + footer wrapping the Home page.
+ */
+export default function App() {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="min-h-screen flex flex-col">
+      {/* ── Navigation ── */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0C3C01] flex items-center justify-between px-10 h-16">
+        {/* Brand */}
+        <span
+          style={{ fontFamily: "Playfair Display, serif" }}
+          className="text-[#F1F2ED] text-xl tracking-tight"
+        >
+          Crop<span className="italic text-[#A2AC82]">Scan</span>
+        </span>
 
-export default App
+        {/* Nav links */}
+        <div className="hidden md:flex items-center gap-8 text-[#F1F2ED] text-sm font-light tracking-wide">
+          <a href="#upload" className="hover:text-[#A2AC82] transition-colors">Diagnose</a>
+          <a href="#how" className="hover:text-[#A2AC82] transition-colors">How it works</a>
+        </div>
+
+        {/* CTA */}
+        <a
+          href="#upload"
+          className="bg-[#2E2D1D] hover:bg-[#4a4535] text-[#F1F2ED] text-xs font-medium uppercase tracking-[2px] px-5 py-2.5 rounded-sm transition-colors"
+        >
+          Get Started
+        </a>
+      </nav>
+
+      {/* ── Page content ── */}
+      <main className="flex-1 pt-16">
+        <Home />
+      </main>
+
+      {/* ── Footer ── */}
+      <footer className="bg-[#2E2D1D] text-[#F1F2ED]/40 text-xs text-center py-6 tracking-wide">
+        © {new Date().getFullYear()} CropScan · AI Plant Disease Detection ·
+        For agricultural guidance only
+      </footer>
+    </div>
+  );
+}
