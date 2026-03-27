@@ -1,3 +1,64 @@
+/* frontend/src/index.css */
+
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=DM+Sans:wght@300;400;500&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ── CSS design tokens (from Valingo palette) ── */
+:root {
+  --green-dark:  #0C3C01;
+  --green-mid:   #5B6D49;
+  --green-soft:  #A2AC82;
+  --cream:       #F1F2ED;
+  --bark:        #2E2D1D;
+  --bark-light:  #4a4535;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-[#F1F2ED] text-[#2E2D1D];
+    font-family: "DM Sans", sans-serif;
+  }
+
+  h1, h2, h3 {
+    font-family: "Playfair Display", serif;
+  }
+}
+
+@layer components {
+  /* Confidence bar animation */
+  .conf-bar {
+    transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Slide-up fade-in for result card */
+  .slide-up {
+    animation: slideUp 0.4s ease forwards;
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Subtle diagonal texture overlay on dark sections */
+  .hero-texture::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 60px,
+      rgba(255,255,255,0.012) 60px,
+      rgba(255,255,255,0.012) 61px
+    );
+    pointer-events: none;
+  }
+}
