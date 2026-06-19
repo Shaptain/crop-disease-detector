@@ -3,7 +3,7 @@ app/utils/image_utils.py
 
 Image preprocessing utilities.
 Converts a raw uploaded file into a normalised numpy array
-ready for MobileNetV2 inference.
+ready for VGG16 inference.
 """
 
 import io
@@ -11,7 +11,7 @@ import numpy as np
 from PIL import Image, UnidentifiedImageError
 from fastapi import HTTPException, UploadFile
 
-# MobileNetV2 expects 224×224 RGB input
+# VGG16 expects 224×224 RGB input
 TARGET_SIZE = (224, 224)
 ALLOWED_CONTENT_TYPES = {"image/jpeg", "image/png", "image/jpg"}
 MAX_FILE_SIZE_BYTES = 10 * 1024 * 1024  # 10 MB

@@ -1,7 +1,7 @@
 """
 app/services/disease_service.py
 
-Loads diseases.json once at module import time and exposes
+Loads disease.json once at module import time and exposes
 a single lookup function used by the prediction router.
 """
 
@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 
 # Resolve path relative to this file so it works regardless of where
 # uvicorn is launched from.
-_DATA_PATH = Path(__file__).resolve().parents[2] / "data" / "diseases.json"
+_DATA_PATH = Path(__file__).resolve().parents[2] / "data" / "disease.json"
 
 # --- Load JSON into memory once ---
 try:
@@ -22,7 +22,7 @@ try:
         _DISEASE_DB: dict = json.load(f)
     logger.info("Disease database loaded: %d entries", len(_DISEASE_DB))
 except FileNotFoundError:
-    logger.error("diseases.json not found at %s", _DATA_PATH)
+    logger.error("disease.json not found at %s", _DATA_PATH)
     _DISEASE_DB = {}
 
 

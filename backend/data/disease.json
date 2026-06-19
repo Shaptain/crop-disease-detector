@@ -1,52 +1,192 @@
 {
-  "Tomato___Late_blight": {
-    "display_name": "Tomato Late Blight",
-    "symptoms": "Dark water-soaked lesions on leaves and stems; white mold on leaf undersides; rapid browning and plant collapse in wet conditions.",
-    "cure": "Apply copper-based fungicide or Mancozeb 75WP. Remove and destroy infected plant material. Avoid overhead irrigation. Rotate crops annually."
+  "Apple___Apple_scab": {
+    "display_name": "Apple Scab",
+    "symptoms": "Olive-green to dark brown velvety spots on leaves and fruit; leaves may curl and drop prematurely; fruit develops scabby, cracked lesions.",
+    "cure": "Apply fungicide (captan or myclobutanil) at bud break and through petal fall. Rake and destroy fallen leaves in autumn. Prune for good air circulation. Plant scab-resistant varieties."
   },
-  "Tomato___Early_blight": {
-    "display_name": "Tomato Early Blight",
-    "symptoms": "Brown circular spots with concentric rings (target pattern) on older leaves; yellowing around lesions; defoliation in severe cases.",
-    "cure": "Apply chlorothalonil or azoxystrobin fungicide. Remove infected leaves. Ensure good air circulation. Mulch around base to prevent soil splash."
+  "Apple___Black_rot": {
+    "display_name": "Apple Black Rot",
+    "symptoms": "Brown to black circular lesions on fruit expanding outward; frogeye leaf spots (tan with dark borders); cankers on branches with reddish-brown bark.",
+    "cure": "Prune out cankers and dead wood. Remove mummified fruit from trees and ground. Apply captan or thiophanate-methyl fungicide. Maintain tree vigor through proper fertilization."
   },
-  "Tomato___healthy": {
-    "display_name": "Healthy Tomato",
+  "Apple___Cedar_apple_rust": {
+    "display_name": "Apple Cedar Rust",
+    "symptoms": "Bright yellow-orange spots on upper leaf surfaces; tube-like structures on leaf undersides; fruit may develop similar spots and become deformed.",
+    "cure": "Apply myclobutanil or mancozeb fungicide from pink bud through petal fall. Remove nearby juniper/cedar trees if possible (alternate host). Plant rust-resistant apple varieties."
+  },
+  "Apple___healthy": {
+    "display_name": "Healthy Apple",
+    "symptoms": "No disease detected. Plant appears healthy.",
+    "cure": "No treatment required. Continue regular care including pruning, watering, and monitoring for early signs of disease."
+  },
+  "Blueberry___healthy": {
+    "display_name": "Healthy Blueberry",
+    "symptoms": "No disease detected. Plant appears healthy.",
+    "cure": "No treatment required. Maintain acidic soil (pH 4.5-5.5), consistent moisture, and annual pruning of old canes."
+  },
+  "Cherry_(including_sour)___Powdery_mildew": {
+    "display_name": "Cherry Powdery Mildew",
+    "symptoms": "White powdery fungal growth on leaves, shoots, and fruit; leaves curl upward and become distorted; fruit may crack or develop russeting.",
+    "cure": "Apply sulfur-based or myclobutanil fungicide at first sign. Prune for air circulation. Remove and destroy infected shoots. Avoid excessive nitrogen fertilization."
+  },
+  "Cherry_(including_sour)___healthy": {
+    "display_name": "Healthy Cherry",
+    "symptoms": "No disease detected. Plant appears healthy.",
+    "cure": "No treatment required. Continue proper pruning, watering, and pest monitoring."
+  },
+  "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot": {
+    "display_name": "Corn Gray Leaf Spot",
+    "symptoms": "Rectangular grey to tan lesions running parallel to leaf veins; lesions may coalesce causing large areas of dead tissue; lower leaves affected first.",
+    "cure": "Plant resistant hybrids. Rotate crops (avoid corn-on-corn). Till crop residue to reduce inoculum. Apply foliar fungicides (strobilurin or triazole) if disease pressure is high."
+  },
+  "Corn_(maize)___Common_rust_": {
+    "display_name": "Corn Common Rust",
+    "symptoms": "Small, circular to elongated reddish-brown pustules on both leaf surfaces; pustules may turn dark brown to black as the season progresses; heavy infection causes premature leaf death.",
+    "cure": "Plant resistant hybrids. Apply foliar fungicide (azoxystrobin or propiconazole) if disease appears before tasseling. Monitor fields regularly during cool, humid conditions."
+  },
+  "Corn_(maize)___Northern_Leaf_Blight": {
+    "display_name": "Corn Northern Leaf Blight",
+    "symptoms": "Long, elliptical grey-green to tan lesions (1-6 inches) on leaves; lesions may coalesce killing large leaf areas; reduced grain fill in severe cases.",
+    "cure": "Plant resistant hybrids (Ht genes). Rotate away from corn for 1-2 years. Apply foliar fungicide (propiconazole or pyraclostrobin) at early signs. Till crop residue."
+  },
+  "Corn_(maize)___healthy": {
+    "display_name": "Healthy Corn",
+    "symptoms": "No disease detected. Plant appears healthy.",
+    "cure": "No treatment required. Maintain proper spacing, fertilization, and irrigation schedules."
+  },
+  "Grape___Black_rot": {
+    "display_name": "Grape Black Rot",
+    "symptoms": "Tan circular leaf spots with dark borders; fruit develops brown rot then shrivels into hard black mummies; shoot lesions appear as dark elliptical cankers.",
+    "cure": "Apply mancozeb or myclobutanil fungicide from bud break through veraison. Remove mummified fruit and infected canes. Ensure good canopy management for air circulation."
+  },
+  "Grape___Esca_(Black_Measles)": {
+    "display_name": "Grape Esca (Black Measles)",
+    "symptoms": "Tiger-stripe pattern on leaves (interveinal chlorosis and necrosis); dark spots on berries; sudden vine collapse in acute form; internal wood decay with dark streaking.",
+    "cure": "No proven cure. Remove severely affected vines. Protect pruning wounds with wound sealant. Avoid large pruning cuts. Remedial surgery (cutting out infected wood) may extend vine life."
+  },
+  "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)": {
+    "display_name": "Grape Leaf Blight (Isariopsis)",
+    "symptoms": "Dark brown to black irregular spots on leaves; spots may have yellow halos; severe infection causes premature defoliation and reduced fruit quality.",
+    "cure": "Apply copper-based or mancozeb fungicide. Remove and destroy infected leaves. Improve canopy airflow through pruning. Avoid overhead irrigation."
+  },
+  "Grape___healthy": {
+    "display_name": "Healthy Grape",
+    "symptoms": "No disease detected. Plant appears healthy.",
+    "cure": "No treatment required. Continue regular canopy management, balanced fertilization, and disease monitoring."
+  },
+  "Orange___Haunglongbing_(Citrus_greening)": {
+    "display_name": "Orange Huanglongbing (Citrus Greening)",
+    "symptoms": "Asymmetric blotchy mottling of leaves; lopsided, bitter, small fruit that stays green at the stylar end; yellow shoots; premature fruit drop; tree decline over several years.",
+    "cure": "No cure exists. Remove and destroy infected trees to prevent spread. Control Asian citrus psyllid vector with systemic insecticides (imidacloprid). Plant certified disease-free nursery stock."
+  },
+  "Peach___Bacterial_spot": {
+    "display_name": "Peach Bacterial Spot",
+    "symptoms": "Small, angular, water-soaked spots on leaves that turn dark and may drop out (shot-hole appearance); fruit develops sunken, cracked lesions; twig cankers may form.",
+    "cure": "Apply oxytetracycline or copper-based bactericide during bloom and fruit development. Plant resistant varieties. Avoid overhead irrigation. Maintain tree vigor with proper nutrition."
+  },
+  "Peach___healthy": {
+    "display_name": "Healthy Peach",
+    "symptoms": "No disease detected. Plant appears healthy.",
+    "cure": "No treatment required. Continue regular pruning, thinning, and fungicide program for preventive care."
+  },
+  "Pepper,_bell___Bacterial_spot": {
+    "display_name": "Pepper Bell Bacterial Spot",
+    "symptoms": "Small, dark, water-soaked lesions on leaves and fruit; lesions become raised and scabby; yellowing and premature leaf drop.",
+    "cure": "Apply copper-based bactericide. Remove and destroy infected plants. Avoid overhead watering. Use certified disease-free seeds and rotate crops every 2-3 years."
+  },
+  "Pepper,_bell___healthy": {
+    "display_name": "Healthy Pepper Bell",
     "symptoms": "No disease detected. Plant appears healthy.",
     "cure": "No treatment required. Continue regular watering, fertilisation, and monitoring."
-  },
-  "Potato___Late_blight": {
-    "display_name": "Potato Late Blight",
-    "symptoms": "Water-soaked dark lesions on leaves and tubers; white fungal growth on leaf undersides; rapid rotting of tubers in storage.",
-    "cure": "Apply Metalaxyl or Cymoxanil fungicide. Destroy infected tubers. Plant certified disease-free seed potatoes. Hill soil around plants."
   },
   "Potato___Early_blight": {
     "display_name": "Potato Early Blight",
     "symptoms": "Dark brown spots with concentric rings on lower leaves; premature defoliation; reduced tuber yield.",
     "cure": "Apply mancozeb or chlorothalonil. Remove infected leaves early. Avoid excess nitrogen fertiliser. Irrigate in the morning."
   },
+  "Potato___Late_blight": {
+    "display_name": "Potato Late Blight",
+    "symptoms": "Water-soaked dark lesions on leaves and tubers; white fungal growth on leaf undersides; rapid rotting of tubers in storage.",
+    "cure": "Apply Metalaxyl or Cymoxanil fungicide. Destroy infected tubers. Plant certified disease-free seed potatoes. Hill soil around plants."
+  },
   "Potato___healthy": {
     "display_name": "Healthy Potato",
     "symptoms": "No disease detected. Plant appears healthy.",
     "cure": "No treatment required. Maintain consistent watering and monitor for early signs of blight."
   },
-  "Corn_(maize)___Common_rust_": {
-    "display_name": "Corn Common Rust",
-    "symptoms": "Small oval pustules (brick-red to dark brown) scattered on both leaf surfaces; heavy infection causes leaf death.",
-    "cure": "Apply triazole or strobilurin fungicide at first sign of rust. Plant resistant hybrids. Scout fields regularly during warm humid weather."
-  },
-  "Corn_(maize)___healthy": {
-    "display_name": "Healthy Corn",
+  "Raspberry___healthy": {
+    "display_name": "Healthy Raspberry",
     "symptoms": "No disease detected. Plant appears healthy.",
-    "cure": "No treatment required. Maintain proper spacing and balanced fertilisation."
+    "cure": "No treatment required. Continue regular pruning of spent canes, maintain good air circulation, and monitor for pests."
   },
-  "Apple___Apple_scab": {
-    "display_name": "Apple Scab",
-    "symptoms": "Olive-green to brown velvety spots on leaves and fruit; distorted fruit; early leaf drop; cracked or corky fruit skin.",
-    "cure": "Apply captan or myclobutanil fungicide from green tip through petal fall. Remove fallen leaves. Prune for airflow. Plant scab-resistant varieties."
-  },
-  "Apple___healthy": {
-    "display_name": "Healthy Apple",
+  "Soybean___healthy": {
+    "display_name": "Healthy Soybean",
     "symptoms": "No disease detected. Plant appears healthy.",
-    "cure": "No treatment required. Continue standard orchard management."
+    "cure": "No treatment required. Maintain proper row spacing, crop rotation, and nutrient management."
+  },
+  "Squash___Powdery_mildew": {
+    "display_name": "Squash Powdery Mildew",
+    "symptoms": "White powdery spots on upper and lower leaf surfaces; spots enlarge and coalesce covering entire leaves; leaves yellow, wither, and die prematurely.",
+    "cure": "Apply potassium bicarbonate, sulfur, or myclobutanil fungicide at first sign. Ensure good air circulation. Avoid overhead watering. Plant resistant varieties when available."
+  },
+  "Strawberry___Leaf_scorch": {
+    "display_name": "Strawberry Leaf Scorch",
+    "symptoms": "Irregular dark purple to brown spots on upper leaf surfaces; spots coalesce causing leaves to appear scorched; affected leaves dry up and curl at edges.",
+    "cure": "Remove and destroy infected leaves. Apply captan or copper-based fungicide. Renovate beds after harvest by mowing and thinning. Ensure adequate spacing for air circulation."
+  },
+  "Strawberry___healthy": {
+    "display_name": "Healthy Strawberry",
+    "symptoms": "No disease detected. Plant appears healthy.",
+    "cure": "No treatment required. Continue regular watering, mulching, and runner management."
+  },
+  "Tomato___Bacterial_spot": {
+    "display_name": "Tomato Bacterial Spot",
+    "symptoms": "Small, dark, greasy-looking spots on leaves, stems, and fruit; spots may have yellow halos; severe infection causes defoliation and fruit scabbing.",
+    "cure": "Apply copper-based bactericide early. Remove infected plant debris. Avoid overhead irrigation. Use disease-free transplants and rotate crops."
+  },
+  "Tomato___Early_blight": {
+    "display_name": "Tomato Early Blight",
+    "symptoms": "Brown circular spots with concentric rings (target pattern) on older leaves; yellowing around lesions; defoliation in severe cases.",
+    "cure": "Apply chlorothalonil or azoxystrobin fungicide. Remove infected leaves. Ensure good air circulation. Mulch around base to prevent soil splash."
+  },
+  "Tomato___Late_blight": {
+    "display_name": "Tomato Late Blight",
+    "symptoms": "Dark water-soaked lesions on leaves and stems; white mold on leaf undersides; rapid browning and plant collapse in wet conditions.",
+    "cure": "Apply copper-based fungicide or Mancozeb 75WP. Remove and destroy infected plant material. Avoid overhead irrigation. Rotate crops annually."
+  },
+  "Tomato___Leaf_Mold": {
+    "display_name": "Tomato Leaf Mold",
+    "symptoms": "Pale green to yellow spots on upper leaf surfaces; olive-green to brown velvety mold on leaf undersides; leaves curl and wither in severe cases.",
+    "cure": "Improve greenhouse ventilation and reduce humidity. Apply chlorothalonil or mancozeb fungicide. Remove infected leaves. Avoid wetting foliage when watering."
+  },
+  "Tomato___Septoria_leaf_spot": {
+    "display_name": "Tomato Septoria Leaf Spot",
+    "symptoms": "Numerous small circular spots with dark borders and grey centres on lower leaves; tiny black fruiting bodies visible in spots; progressive defoliation from the bottom up.",
+    "cure": "Apply chlorothalonil or copper-based fungicide at first sign. Remove and destroy infected lower leaves. Mulch to prevent soil splash. Avoid overhead irrigation."
+  },
+  "Tomato___Spider_mites Two-spotted_spider_mite": {
+    "display_name": "Tomato Spider Mites (Two-Spotted)",
+    "symptoms": "Fine stippling or yellow speckling on leaves; tiny webbing on leaf undersides; leaves become bronzed, dry, and brittle; severe infestation causes defoliation.",
+    "cure": "Spray with miticide (abamectin) or insecticidal soap. Increase humidity around plants. Introduce predatory mites (Phytoseiulus persimilis). Remove heavily infested leaves."
+  },
+  "Tomato___Target_Spot": {
+    "display_name": "Tomato Target Spot",
+    "symptoms": "Brown spots with concentric rings on leaves, stems, and fruit; spots enlarge and merge causing large necrotic areas; fruit lesions are sunken with concentric rings.",
+    "cure": "Apply azoxystrobin or chlorothalonil fungicide. Prune lower branches for air circulation. Remove plant debris after harvest. Rotate crops for 2-3 years."
+  },
+  "Tomato___Tomato_Yellow_Leaf_Curl_Virus": {
+    "display_name": "Tomato Yellow Leaf Curl Virus",
+    "symptoms": "Upward curling and yellowing of leaves; stunted plant growth; reduced fruit set; leaves become thick, leathery, and crumpled.",
+    "cure": "No cure for infected plants -- remove and destroy them. Control whitefly vectors with insecticides (imidacloprid) or sticky traps. Use resistant tomato varieties. Install fine mesh netting."
+  },
+  "Tomato___Tomato_mosaic_virus": {
+    "display_name": "Tomato Mosaic Virus",
+    "symptoms": "Mottled light and dark green mosaic pattern on leaves; leaf distortion and curling; stunted growth; uneven fruit ripening with brown streaks.",
+    "cure": "No cure -- remove and destroy infected plants. Disinfect tools with 10% bleach solution. Wash hands before handling plants. Use virus-resistant seed varieties. Avoid tobacco use near plants."
+  },
+  "Tomato___healthy": {
+    "display_name": "Healthy Tomato",
+    "symptoms": "No disease detected. Plant appears healthy.",
+    "cure": "No treatment required. Continue regular watering, fertilisation, and monitoring."
   }
 }

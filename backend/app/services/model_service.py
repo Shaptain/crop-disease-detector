@@ -1,14 +1,11 @@
 """
 app/services/model_service.py
 
-Loads the trained MobileNetV2 model ONCE at module import time
+Loads the trained VGG16 PyTorch model ONCE at module import time
 and exposes a predict() function used by the prediction router.
-
-The class index → label mapping mirrors the folder order used
-during training (PlantVillage dataset, 38 classes, sorted alphabetically).
-Adjust CLASS_LABELS to match your own training order.
 """
 
+import json
 import logging
 from pathlib import Path
 from typing import Tuple
@@ -17,84 +14,79 @@ import numpy as np
 
 logger = logging.getLogger(__name__)
 
-# ---------------------------------------------------------------------------
-# Class label mapping — must match the order used during model training.
-# PlantVillage 38-class sorted list (abbreviated here; extend as needed).
-# ---------------------------------------------------------------------------
-CLASS_LABELS = [
-    "Apple___Apple_scab",
-    "Apple___Black_rot",
-    "Apple___Cedar_apple_rust",
-    "Apple___healthy",
-    "Blueberry___healthy",
-    "Cherry_(including_sour)___Powdery_mildew",
-    "Cherry_(including_sour)___healthy",
-    "Corn_(maize)___Cercospora_leaf_spot Gray_leaf_spot",
-    "Corn_(maize)___Common_rust_",
-    "Corn_(maize)___Northern_Leaf_Blight",
-    "Corn_(maize)___healthy",
-    "Grape___Black_rot",
-    "Grape___Esca_(Black_Measles)",
-    "Grape___Leaf_blight_(Isariopsis_Leaf_Spot)",
-    "Grape___healthy",
-    "Orange___Haunglongbing_(Citrus_greening)",
-    "Peach___Bacterial_spot",
-    "Peach___healthy",
-    "Pepper,_bell___Bacterial_spot",
-    "Pepper,_bell___healthy",
-    "Potato___Early_blight",
-    "Potato___Late_blight",
-    "Potato___healthy",
-    "Raspberry___healthy",
-    "Soybean___healthy",
-    "Squash___Powdery_mildew",
-    "Strawberry___Leaf_scorch",
-    "Strawberry___healthy",
-    "Tomato___Bacterial_spot",
-    "Tomato___Early_blight",
-    "Tomato___Late_blight",
-    "Tomato___Leaf_Mold",
-    "Tomato___Septoria_leaf_spot",
-    "Tomato___Spider_mites Two-spotted_spider_mite",
-    "Tomato___Target_Spot",
-    "Tomato___Tomato_Yellow_Leaf_Curl_Virus",
-    "Tomato___Tomato_mosaic_virus",
-    "Tomato___healthy",
-]
-
 # Minimum softmax probability to trust a prediction.
-# Below this threshold the response flags low confidence.
 CONFIDENCE_THRESHOLD = 0.60
 
-# Path to the saved Keras model weights
-_MODEL_PATH = Path(__file__).resolve().parents[2] / "model" / "plant_disease_model.h5"
+# Paths
+_MODEL_DIR = Path(__file__).resolve().parents[2] / "model"
+_MODEL_PATH = _MODEL_DIR / "plant_disease_model.pth"
+_LABELS_PATH = _MODEL_DIR / "class_labels.json"
 
 # ---------------------------------------------------------------------------
-# Model loading — happens once when the module is first imported.
+# Load class labels
+# ---------------------------------------------------------------------------
+CLASS_LABELS = []
+try:
+    if _LABELS_PATH.exists():
+        with open(_LABELS_PATH, "r") as f:
+            CLASS_LABELS = json.load(f)
+        logger.info("Loaded %d class labels from %s", len(CLASS_LABELS), _LABELS_PATH)
+    else:
+        logger.warning("class_labels.json not found at %s", _LABELS_PATH)
+except Exception as e:
+    logger.error("Failed to load class labels: %s", e)
+
+# ---------------------------------------------------------------------------
+# Model loading
 # ---------------------------------------------------------------------------
 _model = None
 
 try:
-    # Import TensorFlow lazily so the app can start (with degraded behaviour)
-    # even if TF is not installed, letting other endpoints remain reachable.
-    import tensorflow as tf
+    import torch
+    import torch.nn as nn
+    from torchvision import models, transforms
 
-    if _MODEL_PATH.exists():
-        logger.info("Loading model from %s ...", _MODEL_PATH)
-        _model = tf.keras.models.load_model(str(_MODEL_PATH))
-        logger.info("Model loaded successfully.")
-    else:
-        logger.warning(
-            "Model file not found at %s. "
-            "Place your trained .h5 file there before sending predictions.",
-            _MODEL_PATH,
+    # Preprocessing pipeline — must match training transforms
+    _preprocess = transforms.Compose([
+        transforms.ToPILImage(),
+        transforms.Resize((224, 224)),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]),
+    ])
+
+    if _MODEL_PATH.exists() and CLASS_LABELS:
+        logger.info("Loading PyTorch model from %s ...", _MODEL_PATH)
+        _device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+        # Rebuild VGG16 architecture with custom classifier
+        _model = models.vgg16(weights=None)
+        _model.classifier = nn.Sequential(
+            nn.Linear(512 * 7 * 7, 256),
+            nn.ReLU(),
+            nn.Dropout(0.5),
+            nn.Linear(256, len(CLASS_LABELS)),
         )
+
+        # Load full model weights (backbone + classifier)
+        checkpoint = torch.load(str(_MODEL_PATH), map_location=_device, weights_only=True)
+        _model.load_state_dict(checkpoint["model_state_dict"])
+        _model = _model.to(_device)
+        _model.eval()
+
+        logger.info("Model loaded successfully on %s.", _device)
+    else:
+        if not _MODEL_PATH.exists():
+            logger.warning(
+                "Model file not found at %s. "
+                "Place your trained .pth file there before sending predictions.",
+                _MODEL_PATH,
+            )
 except ImportError:
-    logger.error("TensorFlow is not installed. Install it with: pip install tensorflow")
+    logger.error("PyTorch is not installed. Install it with: pip install torch torchvision")
 
 
 def is_model_loaded() -> bool:
-    """Return True if the Keras model is in memory and ready."""
+    """Return True if the model is in memory and ready."""
     return _model is not None
 
 
@@ -113,19 +105,22 @@ def predict(img_array: np.ndarray) -> Tuple[str, float]:
     """
     if _model is None:
         raise RuntimeError(
-            "Model is not loaded. Check that plant_disease_model.h5 "
-            "exists in the model/ directory."
+            "Model is not loaded. Check that plant_disease_model.pth "
+            "and class_labels.json exist in the model/ directory."
         )
 
-    # Run forward pass — output shape: (1, num_classes)
-    predictions = _model.predict(img_array, verbose=0)
+    # img_array comes in as (1, 224, 224, 3) float32 [0,1] from image_utils
+    # Convert to uint8 for ToPILImage, then apply PyTorch transforms
+    img = (img_array[0] * 255).astype(np.uint8)  # (224, 224, 3)
+    tensor = _preprocess(img).unsqueeze(0).to(_device)  # (1, 3, 224, 224)
 
-    # Highest softmax probability and its index
-    confidence: float = float(np.max(predictions))
-    class_index: int = int(np.argmax(predictions))
+    with torch.no_grad():
+        outputs = _model(tensor)
+        probabilities = torch.softmax(outputs, dim=1)
 
-    # Map index to human-readable label
-    class_label: str = CLASS_LABELS[class_index]
+    confidence = float(probabilities.max().item())
+    class_index = int(probabilities.argmax().item())
+    class_label = CLASS_LABELS[class_index]
 
     logger.info(
         "Prediction: '%s' | confidence: %.4f | above threshold: %s",

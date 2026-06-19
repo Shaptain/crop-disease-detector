@@ -11,11 +11,11 @@ import { detectDisease } from "../api/detect";
  * All application state lives here and is passed down as props.
  */
 export default function Home() {
-  const [file, setFile]       = useState(null);    // selected File object
+  const [file, setFile] = useState(null);    // selected File object
   const [preview, setPreview] = useState(null);    // object URL for <img>
   const [loading, setLoading] = useState(false);
-  const [result, setResult]   = useState(null);    // API response
-  const [error, setError]     = useState(null);    // user-facing error string
+  const [result, setResult] = useState(null);    // API response
+  const [error, setError] = useState(null);    // user-facing error string
 
   /* ── Handle file selection from UploadZone ── */
   const handleFileSelect = useCallback((selectedFile, validationError) => {
@@ -89,7 +89,7 @@ export default function Home() {
         <div className="max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
           {[
             { step: "01", title: "Upload", body: "Take a clear photo of the affected leaf and upload it as a JPG or PNG." },
-            { step: "02", title: "Analyse", body: "Our MobileNetV2 model classifies the image against 38 plant disease classes." },
+            { step: "02", title: "Analyse", body: "Our VGG16 model classifies the image against 38 plant disease classes." },
             { step: "03", title: "Treat", body: "Receive the disease name, confidence score, symptoms, and cure recommendations." },
           ].map(({ step, title, body }) => (
             <div key={step}>
